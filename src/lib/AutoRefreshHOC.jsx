@@ -21,10 +21,16 @@ const withAutoRefresh = Component => {
 				}
 			}, refreshFrequency);
 
+			let stopRefreshTimeout;
 			if (stopRefreshAfter > 0) {
-				setTimeout(() => {
+				stopRefreshTimeout = setTimeout(() => {
 					clearInterval(autoFetchData);
 				}, stopRefreshAfter);
+			}
+
+			return () => {
+				clearInterval(autoFetchData);
+				clearTimeout(stopRefreshTimeout);
 			}
 		}, [
 			refreshFrequency,
