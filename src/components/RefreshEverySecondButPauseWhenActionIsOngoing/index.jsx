@@ -9,10 +9,18 @@ const RefreshEverySecondButPauseWhenActionIsOngoing = props => {
 		<>
 			<div className="textContainer refreshEverySecondButPauseWhenActionIsOngoing">
 				<h3>
-					Refreshes Every Second But Pauses When Action Is On-going
+					Refreshes every second but pauses when an action is on going
 				</h3>
 				<input name="test-input" type="text" />
-				<div className="marginTop">This refreshed {renderCounter.current} times!</div>
+				<div className="marginTop">
+					{renderCounter.current - 1 <= 0
+						? "This section has not refreshed."
+						: renderCounter.current - 1 === 1
+						? "This section has refreshed once."
+						: `This section has refreshed ${
+								renderCounter.current - 1
+						  } times!`}
+				</div>
 			</div>
 		</>
 	);

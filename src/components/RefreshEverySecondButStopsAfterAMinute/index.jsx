@@ -8,8 +8,16 @@ const RefreshEverySecondButStopsAfterAMinute = props => {
 	return (
 		<>
 			<div className="textContainer refreshEverySecondButStopsAfterAMinute">
-				<h3>Refreshes Every Second But Stops After A Minute</h3>
-				<div>This refreshed {renderCounter.current} times!</div>
+				<h3>Refreshes every second but stops after a minute</h3>
+				<div>
+					{renderCounter.current - 1 <= 0
+						? "This section has not refreshed."
+						: renderCounter.current - 1 === 1
+						? "This section has refreshed once."
+						: `This section has refreshed ${
+								renderCounter.current - 1
+						  } times!`}
+				</div>
 			</div>
 		</>
 	);
